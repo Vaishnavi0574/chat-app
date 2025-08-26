@@ -18,10 +18,14 @@ app.use(express.json({limit:"10mb"}));
 
 //for connecting frontend and backend as have different ports
 app.use(cors({
-  origin: ['http://localhost:5173'],
+  origin: [
+    "http://localhost:5173", 
+    "https://chat-app-dz22.onrender.com"
+  ],
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ["GET", "POST", "PUT", "DELETE"],
 }));
+
 
 //middleware to parse json data and cookies
 app.use(express.urlencoded({ extended: true,limit:"10mb" }))
@@ -32,7 +36,7 @@ app.use('/api/auth',authRoutes);
 app.use('/api/messages',messageRoutes);
 
 
-if(process.env.Node_ENV==="production"){
+if(process.env.NODE_ENV==="production"){
     app.use(express.static(path.resolve(_dirname,"../frontend/dist")))
 
     app.get('*',(req,res)=>{
