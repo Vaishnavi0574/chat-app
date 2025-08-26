@@ -20,7 +20,6 @@ app.use(express.json({limit:"10mb"}));
 app.use(cors({
   origin: [
     "http://localhost:5173", 
-    "https://chat-app-dz22.onrender.com"
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
