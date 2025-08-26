@@ -17,11 +17,12 @@ const _dirname=path.resolve()
 app.use(express.json({limit:"10mb"}));
 
 //for connecting frontend and backend as have different ports
-app.use((cors ({
-    origin: ['http://localhost:5173','http://localhost:5174'],
-    credentials: true,
-    methods: ['GET','POST','PUT','DELETE'],
-})))
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://localhost:5174'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+}));
+
 //middleware to parse json data and cookies
 app.use(express.urlencoded({ extended: true,limit:"10mb" }))
 app.use(cookieParser())
