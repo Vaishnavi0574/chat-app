@@ -25,17 +25,18 @@ const Navbar = ({theme,setTheme}) => {
           </div>
 
           <div className="flex items-center gap-2">
-            <button
-                  type="button"
-                  className="absolute inset-y-0 right-0 pr-10 flex items-center"
-                  onClick={() => setTheme(!theme)}
-                >
-                  {theme ? (
-                    <MdNightlight className="size-5 text-base-content/40" />
-                  ) : (
-                    <MdOutlineNightlight className="size-5 text-base-content/40" />
-                  )}
-                </button>
+             <button
+                type="button"
+                className="flex items-center justify-center p-2 rounded-lg hover:bg-base-200 transition"
+                onClick={() => setTheme(!theme)}
+              >
+                {theme ? (
+                  <MdNightlight className="size-5 text-base-content/40" />
+                ) : (
+                  <MdOutlineNightlight className="size-5 text-base-content/40" />
+                )}
+              </button>
+
 
             {authUser && (
               <>
