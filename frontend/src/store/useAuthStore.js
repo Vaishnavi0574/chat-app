@@ -5,7 +5,7 @@ import {io } from "socket.io-client"
 
 const BASE_URL = import.meta.env.MODE === "development"
   ? "http://localhost:3000/api"
-  : "/api";
+  :window.location.origin;;
 export const useAuthStore = create((set,get) => ({
     authUser: null,
     isSigningUp: false,  
@@ -96,12 +96,14 @@ export const useAuthStore = create((set,get) => ({
       if(!authUser|| get().socket?.connected)return 
 
       const socket=io(BASE_URL,{
+        path:"/api/socket.io",
         query:{
           userId:authUser._id
         },
+        withCredentials:true
       });
       socket.connect()
-
+      console.log("user connected")
       set({socket:socket});
 
       socket.on("getOnlineUsers",(userIds)=>{
@@ -110,6 +112,7 @@ export const useAuthStore = create((set,get) => ({
   },
 
      disconnectSocket:()=>{
+      console.log("user disconnected")
       if(get().socket?.connected) get().socket.disconnect();
   }
 
